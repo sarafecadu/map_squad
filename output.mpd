@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MPD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="urn:mpeg:dash:schema:mpd:2011"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xsi:schemaLocation="urn:mpeg:DASH:schema:MPD:2011 http://standards.iso.org/ittf/PubliclyAvailableStandards/MPEG-DASH_schema_files/DASH-MPD.xsd"
+	profiles="urn:mpeg:dash:profile:isoff-live:2011"
+	type="static"
+	mediaPresentationDuration="PT1M16.9S"
+	minBufferTime="PT20.0S">
+	<ProgramInformation>
+	</ProgramInformation>
+	<Period id="0" start="PT0.0S">
+		<AdaptationSet id="0" contentType="audio" segmentAlignment="true" bitstreamSwitching="true" lang="und">
+			<Representation id="0" mimeType="audio/mp4" codecs="mp4a.40.2" bandwidth="65293" audioSamplingRate="48000">
+				<AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="1" />
+				<BaseURL>output.m4s</BaseURL>
+				<SegmentList timescale="1000000" duration="10005333" startNumber="1">
+					<Initialization range="0-737" />
+					<SegmentURL mediaRange="738-84013" />
+					<SegmentURL mediaRange="84014-167991" />
+					<SegmentURL mediaRange="167992-251258" />
+					<SegmentURL mediaRange="251259-335037" indexRange="251259-251310" />
+					<SegmentURL mediaRange="335038-418490" />
+					<SegmentURL mediaRange="418491-502528" />
+					<SegmentURL mediaRange="502529-586772" indexRange="502529-502580" />
+					<SegmentURL mediaRange="586773-644658" />
+				</SegmentList>
+			</Representation>
+		</AdaptationSet>
+	</Period>
+</MPD>
