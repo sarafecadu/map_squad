@@ -1,6 +1,5 @@
 <!DOCTYPE html>
     <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <title>map_squad audio</title>
     <style>
         body {
@@ -19,8 +18,7 @@
         }
     </style>
     <body>
-        <audio id="audio" controls>
-        </audio>
+        <audio controls></audio>
         <h1 class="title">map_squad</h1>
     </body>
     <script>
@@ -32,17 +30,8 @@
                     url = "./mpeg-dash/output.mpd";
                     player = dashjs.MediaPlayer().create();
                     player.initialize(audio, url, true);
-
-                } else if (Hls.isSupported()) {
-                    // hls
-                    var hls = new Hls();
-                    hls.loadSource("./hls/segments.m3u8");
-                    hls.attachMedia(audio);
-                    hls.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
-                        audio.play();
-                    });
                 } else {
-                    console.log("this client doesn't support hls.js or dash.js")
+                    audio.setAttribute(src, "./hls/segments.m3u8")
                 }
             }());
     </script>
