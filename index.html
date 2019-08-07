@@ -1,5 +1,6 @@
 <!DOCTYPE html>
     <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <title>map_squad audio</title>
     <style>
         body {
@@ -18,19 +19,31 @@
         }
     </style>
     <body>
-        <audio controls>
+        <audio id="audio" controls>
         </audio>
         <h1 class="title">map_squad</h1>
     </body>
     <script>
             (function init() {
-                var audio,
+
+                if (window.MediaSource) {
+                    var audio,
                     player,
-                    url = "./output.mpd";
-        
-                audio = document.querySelector("audio");
-                player = dashjs.MediaPlayer().create();
-                player.initialize(audio, url, true);
+                    url = "./mpeg-dash/output.mpd";
+                    audio = document.querySelector("audio");
+                    player = dashjs.MediaPlayer().create();
+                    player.initialize(audio, url, true);
+                } else {
+                    var audio = document.getElementById('audio');
+                    var hls = new Hls();
+                    hls.attachMedia(audio);
+                    hls.on(Hls.Events.MEDIA_ATTACHED, function () {
+                            hls.loadSource("./hls/output.m3u8");
+                            hls.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
+                                console.log("manifest loaded, found " + data.levels.length + " quality level");
+                            });
+                    });
+                }
             }());
     </script>
 </html>
