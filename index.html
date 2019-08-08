@@ -30,14 +30,14 @@
                 // use mpeg-dash
                 // note - using dash.js to create a client player in case
                 // the browser has support for MSE, but not MPEG-DASH
-                const url = "./mpeg-dash/output.mpd";
+                const url = "./dash/output.mpd";
                 const player = dashjs.MediaPlayer().create();
                 player.initialize(audio, url, true);
             } else {
                 // use hls
                 // note - ios safari is the only browser that does not have
                 // built-in support for MSE
-                audio.setAttribute("src", "./hls/segments.m3u8");
+                audio.setAttribute("src", "./hls/master.m3u8");
             }
 
         }());
